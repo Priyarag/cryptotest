@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+
+<br>
+<br>
+
+<div class="container" style="background: #ffffff;">
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <h3>Explore Live Data</h3>
+                <br>
+                <!-- create select here -->
+                <form>
+                <h6>Enter two BTC currencies to analyze.</h6>
+                <div class="row">
+                    <div class="col">
+                        <div class="dropdown">
+                            <button onclick="myFunction()" class="dropbtn">CryptoCurrency 1</button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="">XRP</a>
+                                <a href="">ETH</a>
+                                <a href="">LTC</a>
+                                <a href="">BCC</a>
+                                <a href="">EOS</a>
+                                <a href="">BNC</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                            <div class="dropdown">
+                                <button onclick="myFunction()" class="dropbtn">CryptoCurrency 2</button>
+                                <div id="myDropdown" class="dropdown-content">
+                                    <a href="#home">Home</a>
+                                    <a href="#about">About</a>
+                                    <a href="#contact">Contact</a>
+                                </div>
+                            </div>
+                        </div>
+                    <input type="text" class="form-control" placeholder="BNBBTC" id="firstCurrency">
+                    </div>
+                    <div class="col">
+                    <input type="text" class="form-control" placeholder="EOSBTC" id="secondCurrency">
+                    </div>
+                    <div class="col">
+                    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+                </form> 
+        
+            </div>
+        </div>
+    
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="plot"></div>
+            </div>
+        </div>
+    </div>
+        <br>
+        <br>
+
+    <script src="{{ url_for('static', filename='js/correlation_plots.js') }}"></script>
+
+{% endblock content %}
