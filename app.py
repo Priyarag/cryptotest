@@ -95,9 +95,9 @@ def historical_data(correctedCurrency):
 @app.route('/livedata/<userSelectedCrypto1>/<userSelectedCrypto2>/<userSelectedDateTime1>/<userSelectedDateTime2>')
 def collectData(userSelectedCrypto1=None,userSelectedCrypto2=None,userSelectedDateTime1=None,userSelectedDateTime2=None):
 
-    results1 = session.query(Crypto_Table.symbol, Crypto_Table.price, cast(Crypto_Table.crypto_timestamp,DateTime))\
+    results1 = session.query(Crypto_Table.symbol, func.max(Crypto_Table.price), cast(Crypto_Table.crypto_timestamp,DateTime))\
         .filter(Crypto_Table.symbol == userSelectedCrypto1).filter(and_(Crypto_Table.crypto_timestamp >= userSelectedDateTime1),(Crypto_Table.crypto_timestamp <= userSelectedDateTime2)).all(),\
-        session.query(Crypto_Table.symbol, Crypto_Table.price, cast(Crypto_Table.crypto_timestamp,DateTime))\
+        session.query(Crypto_Table.symbol, cast(Crypto_Table.crypto_timestamp,DateTime))\
         .filter(Crypto_Table.symbol == userSelectedCrypto2).filter(and_(Crypto_Table.crypto_timestamp >= userSelectedDateTime1),(Crypto_Table.crypto_timestamp <= userSelectedDateTime2)).all()  
 
     # results1 = session.query(Crypto_Table.symbol, Crypto_Table.price, cast(Crypto_Table.crypto_timestamp,DateTime))\
